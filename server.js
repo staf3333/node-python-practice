@@ -22,17 +22,18 @@ app.get("/", async (req, res, next) => {
     encoding: "utf-8",
     flag: "w",
   });
-  const pythonProcess = await spawnSync("python3", [
+  const pythonProcess = await spawnSync("python", [
     "C:/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/python-script.py",
     "first_function",
     "C:/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/args.json",
     "C:/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/results.json",
   ]);
   const result = pythonProcess.stdout?.toString()?.trim();
-  const error = pythonProcess.err?.toString()?.trim();
+  const error = pythonProcess.stderr?.toString()?.trim();
 
   const status = result === "OK";
   if (status) {
+    console.log("ran process");
     const buffer = await readFile(
       "C:/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/results.json"
     );
