@@ -23,10 +23,10 @@ app.get("/", async (req, res, next) => {
     flag: "w",
   });
   const pythonProcess = await spawnSync("python3", [
-    "/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/python-script.py",
+    "C:/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/python-script.py",
     "first_function",
-    "/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/args.json",
-    "/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/results.json",
+    "C:/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/args.json",
+    "C:/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/results.json",
   ]);
   const result = pythonProcess.stdout?.toString()?.trim();
   const error = pythonProcess.err?.toString()?.trim();
@@ -34,7 +34,7 @@ app.get("/", async (req, res, next) => {
   const status = result === "OK";
   if (status) {
     const buffer = await readFile(
-      "/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/results.json"
+      "C:/Users/shabamus/OneDrive - adidas/Documents/Adilyze/node-python-practice/scripts/results.json"
     );
     const resultParsed = JSON.parse(buffer?.toString());
     res.send(resultParsed.toString());
